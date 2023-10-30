@@ -6,9 +6,10 @@ def get_function_direct_dependencies(function: Callable) -> dict[str, "Dependenc
     dependencies = {}
     if function.__defaults__ is None:
         return dependencies
+    function_args = function.__code__.co_varnames[0:function.__code__.co_argcount]
     args_with_defaults = {
         arg: function.__defaults__[i]
-        for i, arg in enumerate(function.__code__.co_varnames[-len(function.__defaults__):])
+        for i, arg in enumerate(function_args[-len(function.__defaults__):])
     }
     for arg_name, arg_value in args_with_defaults.items():
         if isinstance(arg_value, Dependency):
