@@ -19,7 +19,15 @@ def requires_twenty_plus_a_plus_b(a: int, b: int, twenty: int = depends(requires
     print("Resolve requires_twenty_plus_a_plus_b")
     return twenty + a + b
 
-def requires_multiple(a, b, complex: int = depends(requires_twenty_plus_a_plus_b), ten1: int = depends(requires_ten), ten2: int = depends(requires_ten), twenty1: int = depends(requires_twenty), twenty2: int = depends(requires_twenty)):
+def requires_multiple(
+    a,
+    b,
+    complex: int = depends(requires_twenty_plus_a_plus_b),
+    ten1: int = depends(requires_ten),
+    ten2: int = depends(requires_ten),
+    twenty1: int = depends(requires_twenty),
+    twenty2: int = depends(requires_twenty)
+):
     print("Resolve requires_multiple", a, b, complex, ten1, ten2, twenty1, twenty2)
     return a + b + complex + ten1 + ten2 + twenty1 + twenty2
 
